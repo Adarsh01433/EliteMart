@@ -3,10 +3,12 @@ import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Colors } from '@utils/Constants';
 import Home from '@modules/home';
-import Categories from '@modules/categories';
 import Account from '@modules/account';
 import Cart from '@modules/cart';
 import { AccontIcon, CartIcon, CategoriesIcon, HomeIcon } from './TabIcons';
+import Categories from '@modules/categories';
+import { useAppSelector } from '@store/reduxHook';
+import { selectTotalItemsCart } from '@modules/cart/api/slice';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const MainNavigator: FC = () => {
 
-  const count = 2
+  const count = useAppSelector(selectTotalItemsCart)
   return (
     <Tab.Navigator
       screenOptions={{
@@ -38,7 +40,7 @@ const MainNavigator: FC = () => {
         }}
       />
 
-      <Tab.Screen
+       <Tab.Screen
         name="Categories"
         component={Categories}
         options={{

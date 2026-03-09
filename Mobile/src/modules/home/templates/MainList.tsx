@@ -1,11 +1,21 @@
 import { ActivityIndicator, FlatList, NativeScrollEvent, NativeSyntheticEvent, Platform, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import React, { FC, useRef, useState } from 'react'
 import {dynamicDashboardData as fullData} from "@utils/db";
-import AdCarousel from '../organisms/AdCarousel';
+import AdCarousal from '../organisms/AdCarousal';
+import Categories from '../organisms/Categories';
+import Sponser from '../organisms/Sponser';
+import VerticalList from '../organisms/VerticalList';
+import HorizontalList from '../organisms/HorizontalList';
+import AnimatedHorizontalList from '../organisms/AnimatedHorizontalList';
 
-
+// Component Maping
 const sectionComponent:{[key : string]: React.ComponentType<any>}= {
- ad_carousel : AdCarousel
+ ad_carousal : AdCarousal,
+ categories :Categories,
+ sponser : Sponser,
+ vertical_list : VerticalList,
+ horizontal_list :HorizontalList,
+ animated_horizontal_list : AnimatedHorizontalList
 }
 
 
@@ -46,6 +56,7 @@ const MainList:FC<{scrollYGlobal:any}> = ({scrollYGlobal}) => {
   setTimeout(()=> {
     const nextPage = currentPage+1;
     const newItmes = fullData?.slice(0, nextPage*PAGE_SIZE)
+    setData(newItmes)
     setCurrentPage(nextPage);
     setIsLoadingMore(false)
   },4000)

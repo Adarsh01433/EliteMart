@@ -35,7 +35,7 @@ const [focusedIndex, setFocusedIndex] = useState(0)
         <Icon size={16} name='home' iconFamily='Ionicons'/>
         <Text style = {styles.homeText}>HOME</Text>
      <Text numberOfLines={1}
-     style = {styles.addressText}>F-34,Birsa Munda Boys Hostel, Gautam Buddha University</Text>
+     style = {styles.addressText}>F-35,Birsa Munda Boys Hostel, Gautam Buddha University</Text>
      <Icon size={16} name='chevron-forward-sharp' iconFamily='Ionicons'/>       
     </View>
 

@@ -8,6 +8,7 @@ import { screenHeight } from '@utils/Constants';
 import MenuHeader from './molecules/MenuHeader';
 import Searchbar from './molecules/Searchbar';
 import MainList from './templates/MainList';
+import AdCarousel from './organisms/AdCarousal';
 
 
 const Home = () => {
