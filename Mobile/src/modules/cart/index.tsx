@@ -6,9 +6,14 @@ import { useAppSelector } from '@store/reduxHook'
 import { selectCartItems } from './api/slice'
 import { navigate } from '@navigation/NavigationUtil'
 import { Colors } from '@utils/Constants'
+import OrderItem from './atoms/OrderItem'
 
 const Cart = () => {
  const carts = useAppSelector(selectCartItems);
+
+ const renderItem = ({item}: any)=> (
+  <OrderItem item = {item}/>
+ )
 
   return (
    <CustomSafeAreaView>
