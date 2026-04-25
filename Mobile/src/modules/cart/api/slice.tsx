@@ -69,7 +69,7 @@ export const selectTotalItemsCart = createSelector(selectCartItems, (items)=> {
     return items.reduce((total, item)=> total + item?.quantity, 0)
 })
 
-export const selectTotalPrice = createSelector(selectCartItems,(items)=> {
+export const selectTotalCartPrice = createSelector(selectCartItems,(items)=> {
     return  items?.reduce((total, item)=> total + item.totalPrice, 0)
 })
 

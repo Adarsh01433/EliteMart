@@ -8,6 +8,7 @@ import SearchBar from './atoms/SearchBar'
 import ProductItem from './atoms/ProductItem'
 import { useAppSelector } from '@store/reduxHook'
 import { selectTotalItemsCart } from '@modules/cart/api/slice'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const Products:FC = () => {
 
@@ -38,6 +39,7 @@ const Products:FC = () => {
 
   return (
     <View style = {styles.container}>
+      <SafeAreaView/>
       <SearchBar cartLength={count} />
       <FlatList bounces = {false} data={products} 
         renderItem={renderItem} 

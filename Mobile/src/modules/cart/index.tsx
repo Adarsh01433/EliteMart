@@ -7,9 +7,11 @@ import { selectCartItems } from './api/slice'
 import { navigate } from '@navigation/NavigationUtil'
 import { Colors } from '@utils/Constants'
 import OrderItem from './atoms/OrderItem'
+import PlaceOrderButton from './atoms/PlaceOrderButton'
 
 const Cart = () => {
  const carts = useAppSelector(selectCartItems);
+const user = useAppSelector(state=> state.account.user) as any
 
  const renderItem = ({item}: any)=> (
   <OrderItem item = {item}/>
@@ -19,8 +21,8 @@ const Cart = () => {
    <CustomSafeAreaView>
     <View style = {styles.container}>
     <Text style = {styles.heading}>My Cart</Text>
-    <Text style = {styles.number}></Text>
-    <Text style = {styles.address}>Deliver to :Login first to place orders </Text>
+    <Text style = {styles.number}>Deliver to : {user?.phone ? user?.phone : "🏠"}</Text>
+    <Text style = {styles.address}>{user?.address ? user?.address : "Login first to place orders"} </Text>
     </View>
 
 
@@ -31,13 +33,16 @@ const Cart = () => {
         contentContainerStyle = {styles.listContainer}/>
     ) : 
     <View style = {styles.emptyContainer}>
-      <Text style = {styles.emptyText}>Ypur cart is empty</Text>
+      <Text style = {styles.emptyText}>Your cart is empty</Text>
 
       <TouchableOpacity style = {styles.shopNowButton} onPress={()=> navigate("Categories")}>
         <Text style = {styles.shopNowText}>Shop Now</Text>
       </TouchableOpacity>
     </View>
   }
+
+  {carts.length > 0  &&
+  <PlaceOrderButton/>}
    </CustomSafeAreaView>
   )
 }
