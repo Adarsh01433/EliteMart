@@ -5,6 +5,7 @@ import { useRoute } from '@react-navigation/native'
 import { goBack, navigate } from '@navigation/NavigationUtil'
 import LottieView from 'lottie-react-native'
 
+// finally completed
 const PaymentSuccess = () => {
 
   const route = useRoute()
