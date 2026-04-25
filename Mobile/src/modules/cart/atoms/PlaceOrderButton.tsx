@@ -2,13 +2,26 @@ import { ActivityIndicator, Platform, StyleSheet, Text, TouchableOpacity, View }
 import React, { useState } from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { useAppSelector } from '@store/reduxHook'
-import { selectTotalCartPrice } from '../api/slice'
+import { selectCartItems, selectTotalCartPrice } from '../api/slice'
 import LoginModal from '@modules/account/molecules/LoginModal'
+import { createTransaction } from '../api/paygateway'
 
 const PlaceOrderButton = () => {
+  const user = useAppSelector(state=> state.account.user) as any
+  const carts = useAppSelector(selectCartItems)
     const price = useAppSelector(selectTotalCartPrice)
     const [isVisible, setIsVisible] = useState(false)
     const [loading, setLoading] = useState(false)
+
+
+ const handlePlaceOrder = async()=> {
+   setLoading(true)
+   const data = await createTransaction(price, user?.id)
+   if(data){
+   
+   }
+ }
+
   return (
    <>
    <View style = {styles.container}>
@@ -18,7 +31,11 @@ const PlaceOrderButton = () => {
       <Text style = {{fontSize : RFValue(10)}}>{" "}</Text>
     </View>
       <TouchableOpacity   style = {styles.button} disabled = {loading} onPress={()=> {
-        setIsVisible(true)
+       if(user){
+         handlePlaceOrder()
+       }
+       else {setIsVisible(true)
+       }
       }}> {
         loading ? <ActivityIndicator color= "black" size= "small"/> :
         <Text style = {styles.btnText}>Place Order</Text>
